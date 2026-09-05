@@ -82,7 +82,7 @@ export default function Home() {
     <main className="trip-shell">
       <div className="road-lines" aria-hidden="true" />
       <header className="topbar page-width"><div className="brand-mark"><span>✦</span> TRIP TAB</div><div className="topbar-actions"><button className="reset-button" type="button" onClick={resetTrip}>↺ รีเซ็ต</button><div className="trip-status"><span className="status-dot" /> ทริปใหม่ <span className="status-arrow">↗</span></div></div></header>
-      <section className="hero page-width"><div className="eyebrow">ADVENTURE AWAITS / 01</div><h1>หารทริปให้ลงตัว<br /><em>แล้วออกเดินทาง</em></h1><p className="hero-copy">บันทึกค่าใช้จ่าย คำนวณค่าน้ำมัน และเคลียร์ยอดกับเพื่อนให้จบในที่เดียว</p><div className="route-badge"><span>⌁</span> BANGKOK <b>— — —</b> KHAO YAI <span>⌁</span></div></section>
+      <section className="hero page-width"><div className="eyebrow">ADVENTURE AWAITS / V1.0.0</div><h1>หารทริปให้ลงตัว<br /><em>แล้วออกเดินทาง</em></h1><p className="hero-copy">บันทึกค่าใช้จ่าย คำนวณค่าน้ำมัน และเคลียร์ยอดกับเพื่อนให้จบในที่เดียว</p><div className="route-badge"><span>⌁</span> BKK <b>— — —</b> EVERYWHERE IN THAILAND <span>⌁</span></div></section>
       <div className="dashboard page-width">
         <section className="input-column">
           <div className="section-heading"><span className="step-number">01</span><div><h2>ทีมเดินทาง</h2><p>ใครไปด้วยกันบ้าง?</p></div></div>
