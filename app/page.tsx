@@ -7,17 +7,19 @@ type Settlement = { from: string; to: string; amount: number };
 
 const currency = new Intl.NumberFormat("th-TH", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const formatBaht = (amount: number) => `${currency.format(Math.round(amount))} ฿`;
+const defaultMembers = ["คุณ", "มีน", "ต้น"];
+const defaultExpenses: Expense[] = [
+  { id: 1, label: "ค่าทางด่วน", amount: 320, paidBy: "คุณ" },
+  { id: 2, label: "ค่าที่พักคืนแรก", amount: 1800, paidBy: "มีน" },
+];
 
 export default function Home() {
-  const [members, setMembers] = useState(["คุณ", "มีน", "ต้น"]);
+  const [members, setMembers] = useState(defaultMembers);
   const [newMember, setNewMember] = useState("");
   const [distance, setDistance] = useState(780);
   const [efficiency, setEfficiency] = useState(14);
   const [fuelPrice, setFuelPrice] = useState(35);
-  const [expenses, setExpenses] = useState<Expense[]>([
-    { id: 1, label: "ค่าทางด่วน", amount: 320, paidBy: "คุณ" },
-    { id: 2, label: "ค่าที่พักคืนแรก", amount: 1800, paidBy: "มีน" },
-  ]);
+  const [expenses, setExpenses] = useState<Expense[]>(defaultExpenses);
   const [nextExpense, setNextExpense] = useState({ label: "", amount: "", paidBy: "คุณ" });
 
   const fuelCost = efficiency > 0 ? (distance / efficiency) * fuelPrice : 0;
@@ -66,11 +68,20 @@ export default function Home() {
     setExpenses([...expenses, { id: Date.now(), label: nextExpense.label.trim(), amount, paidBy: nextExpense.paidBy }]);
     setNextExpense({ label: "", amount: "", paidBy: nextExpense.paidBy });
   };
+  const resetTrip = () => {
+    setMembers([]);
+    setNewMember("");
+    setDistance(0);
+    setEfficiency(0);
+    setFuelPrice(0);
+    setExpenses([]);
+    setNextExpense({ label: "", amount: "", paidBy: "" });
+  };
 
   return (
     <main className="trip-shell">
       <div className="road-lines" aria-hidden="true" />
-      <header className="topbar page-width"><div className="brand-mark"><span>✦</span> TRIP TAB</div><div className="trip-status"><span className="status-dot" /> ทริปใหม่ <span className="status-arrow">↗</span></div></header>
+      <header className="topbar page-width"><div className="brand-mark"><span>✦</span> TRIP TAB</div><div className="topbar-actions"><button className="reset-button" type="button" onClick={resetTrip}>↺ รีเซ็ต</button><div className="trip-status"><span className="status-dot" /> ทริปใหม่ <span className="status-arrow">↗</span></div></div></header>
       <section className="hero page-width"><div className="eyebrow">ADVENTURE AWAITS / 01</div><h1>หารทริปให้ลงตัว<br /><em>แล้วออกเดินทาง</em></h1><p className="hero-copy">บันทึกค่าใช้จ่าย คำนวณค่าน้ำมัน และเคลียร์ยอดกับเพื่อนให้จบในที่เดียว</p><div className="route-badge"><span>⌁</span> BANGKOK <b>— — —</b> KHAO YAI <span>⌁</span></div></section>
       <div className="dashboard page-width">
         <section className="input-column">
